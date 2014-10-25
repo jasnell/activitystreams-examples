@@ -1,0 +1,8 @@
+{
+  "name": "tpac",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "jsonld-js": "git@github.com:digitalbazaar/jsonld.js.git"
+  }
+}
