@@ -1,0 +1,191 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>tpac</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+
+    <link rel="stylesheet" href="highlight/styles/ir_black.css">
+    <script src="highlight/highlight.pack.js"></script>
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- endbuild -->
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">What's Changed</h3>
+        <a href="index.html">AS 1.0</a> | <a href="whatsnew.html">Updates</a> | <a href="as2.html">AS 2.0</a> | <a href="todo.html">Todo</a> | <a href="#" id="fullscreen">Fullscreen</a>
+      </div>
+      <div class="jumbotron">
+
+        <h2>Activity Vocabulary and JSON-LD</h2>
+
+        <p>Activity Streams 2.0 is a Linked Data Vocabulary + a JSON-LD Serialization</p>
+
+        <pre id="example"  class="json">* "objectType" becomes "@type", allows multiple values
+
+* "id" becomes "@id"
+
+* "@context" provides the JSON-LD @context definition
+
+* Parsers are required to support Compact URIs (e.g. <code>vcard:fn</code> 
+  is short for <code>http://www.w3.org/2006/vcard/ns#fn</code>)
+
+* Publishers MAY use additional JSON-LD'isms, 
+  Consumers MUST be able to understand
+
+  For instance, the following is a valid Activity Streams 2.0 document:
+
+[
+  {
+    "@type": [
+      "http://activitystrea.ms/2.0/Activity"
+    ],
+    "http://activitystrea.ms/2.0/actor": [
+      {
+        "@id": "acct:sally@example.org",
+        "http://activitystrea.ms/2.0/displayName": [
+          {
+            "@value": "Sally"
+          }
+        ]
+      }
+    ],
+    "http://activitystrea.ms/2.0/object": [
+      {
+        "@id": "urn:example:posts:1"
+      }
+    ],
+    "http://activitystrea.ms/2.0/verb": [
+      {
+        "@id": "http://activitystrea.ms/1.0/post"
+      }
+    ]
+  }
+]
+
+* Publishers need to weigh the benefit of relying too much on JSON-LD 
+  mechanisms. Need to keep consumers in mind. Keep it simple.
+        </pre>
+
+        <h2>Things Added</h2>
+
+        <p>
+          The Activity Streams 2.0 Vocabulary includes stuff that used to be 
+          defined as extensions to Activity Streams 1.0
+        </p>
+
+        <pre id="example" class="json">* "inReplyTo" and "replies"
+
+* Audience Targeting using "to", "bto", "cc", and "bcc"
+
+* "priority"
+
+* GeoLocation using "location"
+
+* Collection paging using "next", "prev", "first", "last" and "current"
+
+* "validFrom", "validAfter", "validBefore", "validUntil"
+
+* "status", "instrument", "participant", "result", "scope"
+
+* "language"
+        </pre>
+
+        <h2>Things Changed</h2>
+
+        <p>
+          A few existing bits were updated.
+        </p>
+
+        <pre id="example" class="json">* "duration" now supports ISO 8601 durations (e.g. "duration": "PT1M")
+
+* "tags" is renamed to "tag"
+
+* "attachments" is renamed to "attachment"
+
+* An object can now have more than 1 object type (using JSON-LD's "@type")
+
+* "displayName", "title", "content" and "summary" are Natural Language Values 
+  (meaning they can be expressed using more than one language in the document)
+
+* "height" and "weight" are clarified to express device independent pixels
+
+* MediaLinks are now Link objects (clarified definition)
+        </pre>
+
+        <h2>Things Removed</h2>
+
+        <p>
+          A few bits were removed.
+        </p>
+
+        <pre id="example" class="json">* "upstreamDuplicates" and "downstreamDuplicates" are 
+  deprecated (did <i>anyone<i> every actually use these?)
+
+        </pre>
+
+      </div>
+    </div>
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/es6-promise/promise.js"></script>
+    <script src="bower_components/jsonld-js/js/jsonld.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js(.) scripts/plugins.js -->
+        <script src="bower_components/bootstrap/js/affix.js"></script>
+        <script src="bower_components/bootstrap/js/alert.js"></script>
+        <script src="bower_components/bootstrap/js/dropdown.js"></script>
+        <script src="bower_components/bootstrap/js/tooltip.js"></script>
+        <script src="bower_components/bootstrap/js/modal.js"></script>
+        <script src="bower_components/bootstrap/js/transition.js"></script>
+        <script src="bower_components/bootstrap/js/button.js"></script>
+        <script src="bower_components/bootstrap/js/popover.js"></script>
+        <script src="bower_components/bootstrap/js/carousel.js"></script>
+        <script src="bower_components/bootstrap/js/scrollspy.js"></script>
+        <script src="bower_components/bootstrap/js/collapse.js"></script>
+        <script src="bower_components/bootstrap/js/tab.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+<script>
+  $(document).ready(function() {
+  $('pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+  });
+
+$("#fullscreen").click(function() {
+    var
+          el = document.documentElement
+        , rfs =
+               el.requestFullScreen
+            || el.webkitRequestFullScreen
+            || el.mozRequestFullScreen
+    ;
+    rfs.call(el);    
+});
+
+</script>
+        <!-- endbuild -->
+
+
+
+</body>
+</html>

@@ -13,28 +13,33 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+
+    <link rel="stylesheet" href="highlight/styles/ir_black.css">
+    <script src="highlight/highlight.pack.js"></script>
+
     <link rel="stylesheet" href="styles/main.css">
+
     <!-- endbuild -->
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <h3 class="text-muted">Activity Streams 2.0 Examples</h3>
+        <h3 class="text-muted">Still Todo</h3>
+        <a href="index.html">AS 1.0</a> | <a href="whatsnew.html">Updates</a> | <a href="as2.html">AS 2.0</a> | <a href="todo.html">Todo</a> | <a href="#" id="fullscreen">Fullscreen</a>
       </div>
       <div class="jumbotron">
-        <p><button id="prev">&lt;&lt;Previous</button><button id="next">Next >></button></p>
-        <h2>Example <span id="exnum"></span>:</h2>
-        <pre id="example">
-          &nbsp;
-        </pre>
-        <h2>JSON-LD Expanded:</h2>
-        <pre id="expanded">
-          &nbsp;
-        </pre>
-        <h2>Normalized:</h2>
-        <pre id="normalized">
-          &nbsp;
-        </pre>
+
+        <h2>1. Actions</h2>
+
+        <p>Publish the Actions Vocabulary First Public Working Draft.</p>
+
+        <h2>2. Activity Streams 1.0 Base Schema Support</h2>
+
+        <p>For backwards compatibility, publish a WG Note that describes how to handle
+        the Activity Streams 1.0 Base Schema verbs and objectTypes.</p>
+
+        <h2>3. Begin working on the API stuff</h2>
+
       </div>
     </div>
 
@@ -63,8 +68,28 @@
         <!-- endbuild -->
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/examples.js"></script>
-        <script src="scripts/main.js"></script>
+<script>
+  $(document).ready(function() {
+  $('pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+  });
+
+$("#fullscreen").click(function() {
+    var
+          el = document.documentElement
+        , rfs =
+               el.requestFullScreen
+            || el.webkitRequestFullScreen
+            || el.mozRequestFullScreen
+    ;
+    rfs.call(el);    
+});
+
+</script>
         <!-- endbuild -->
+
+
+
 </body>
 </html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>tpac</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+
+    <link rel="stylesheet" href="highlight/styles/arta.css">
+    <script src="highlight/highlight.pack.js"></script>
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- endbuild -->
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">Activity Streams 2.0 Examples</h3>
+        <a href="index.html">AS 1.0</a> | <a href="whatsnew.html">Updates</a> | <a href="as2.html">AS 2.0</a> | <a href="todo.html">Todo</a> | <a href="#" id="fullscreen">Fullscreen</a>
+      </div>
+      <div class="jumbotron">
+        <p><button id="prev">&lt;&lt;Previous</button><button id="next">Next >></button></p>
+        <h2>Example <span id="exnum"></span>: <span id="excap"></span></h2>
+        <pre id="example" class="json" contenteditable>
+          &nbsp;
+        </pre>
+        <h2>JSON-LD Expanded:</h2>
+        <pre id="expanded" class="json">
+          &nbsp;
+        </pre>
+        <h2>Normalized:</h2>
+        <pre id="normalized" class="json">
+          &nbsp;
+        </pre>
+      </div>
+    </div>
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/es6-promise/promise.js"></script>
+    <script src="bower_components/jsonld-js/js/jsonld.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js(.) scripts/plugins.js -->
+        <script src="bower_components/bootstrap/js/affix.js"></script>
+        <script src="bower_components/bootstrap/js/alert.js"></script>
+        <script src="bower_components/bootstrap/js/dropdown.js"></script>
+        <script src="bower_components/bootstrap/js/tooltip.js"></script>
+        <script src="bower_components/bootstrap/js/modal.js"></script>
+        <script src="bower_components/bootstrap/js/transition.js"></script>
+        <script src="bower_components/bootstrap/js/button.js"></script>
+        <script src="bower_components/bootstrap/js/popover.js"></script>
+        <script src="bower_components/bootstrap/js/carousel.js"></script>
+        <script src="bower_components/bootstrap/js/scrollspy.js"></script>
+        <script src="bower_components/bootstrap/js/collapse.js"></script>
+        <script src="bower_components/bootstrap/js/tab.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/offline-context.js"></script>
+        <script src="scripts/examples.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+
+<script>
+$("#fullscreen").click(function() {
+    var
+          el = document.documentElement
+        , rfs =
+               el.requestFullScreen
+            || el.webkitRequestFullScreen
+            || el.mozRequestFullScreen
+    ;
+    rfs.call(el);    
+});
+</script>
+
+</body>
+</html>

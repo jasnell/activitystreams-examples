@@ -7,13 +7,28 @@ if (window.location.hash) {
   current_example = Number.isNaN(hash) ? current_example : hash-2;
 }
 
-function showExample(exnum, target, expanded, normalized, n) {
+function showExample(excap, exnum, target, expanded, normalized, n) {
 
+  excap.text(examples[n].cap);
   exnum.text(n+1);
 
-  var example = examples[n];
+  var example = examples[n].ex;
 
   target.text(JSON.stringify(example, undefined, 2));
+
+  target.blur(function(e) {
+    try {
+      var m = JSON.parse(target.text());
+
+      jsonld.expand(m, function(e,r) {
+        expanded.text(JSON.stringify(r, undefined, 2));
+      });
+
+      jsonld.normalize(m, {format: 'application/nquads'}, function(e,r) {
+        normalized.text(r);
+      });
+    } catch (ex) {}
+  });
 
   jsonld.expand(example, function(e,r) {
     expanded.text(JSON.stringify(r, undefined, 2));
@@ -24,6 +39,12 @@ function showExample(exnum, target, expanded, normalized, n) {
   });
 
   window.location.hash = current_example + 1;
+
+  $(document).ready(function() {
+  $('pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
 }
 
 function toggleButtons() {
@@ -32,12 +53,12 @@ function toggleButtons() {
 }
 
 function showNext() {
-  showExample($('#exnum'), $('#example'), $('#expanded'), $('#normalized'), ++current_example);
+  showExample($('#excap'), $('#exnum'), $('#example'), $('#expanded'), $('#normalized'), ++current_example);
   toggleButtons();
 }
 
 function showPrev() {
-  showExample($('#exnum'), $('#example'), $('#expanded'), $('#normalized'), --current_example);
+  showExample($('#excap'), $('#exnum'), $('#example'), $('#expanded'), $('#normalized'), --current_example);
   toggleButtons();
 }
 

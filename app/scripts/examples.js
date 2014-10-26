@@ -1,23 +1,27 @@
 
 var online_context = "http://asjsonld.mybluemix.net";
-var offline_context = "";
 var context = online_context;
-
+//var context = offline_context;
 var examples = [
-  {
+  { "cap": "A Simple Activity w/unmapped verb", 
+    "ex" : {
     "@context": context,
     "@type": "as:Activity",
     actor: "acct:sally@example.org",
     verb: "post",
     object: "urn:example:posts:1"
-  },
+  }},
+  { "cap": "A Simple Activity w/mapped verb", 
+    "ex" : 
   {
     "@context": [context, { "post": "as1:post" }],
     "@type": "as:Activity",
     actor: "acct:sally@example.org",
     verb: "post",
     object: "urn:example:posts:1"
-  },
+  }},
+  { "cap": "Expanded Actor Object", 
+    "ex" :
   {
     "@context": [context, { "post": "as1:post" }],
     "@type": "as:Activity",
@@ -33,7 +37,9 @@ var examples = [
     },
     verb: "post",
     object: "urn:example:posts:1"
-  },
+  }},
+  { "cap": "Multiple Actors", 
+    "ex" :
   {
     "@context": [context, { "post": "as1:post" }],
     "@type": "as:Activity",
@@ -51,7 +57,9 @@ var examples = [
     ],
     verb: "post",
     object: "urn:example:posts:1"
-  },
+  }},
+  { "cap": "Expanded Actor and Object", 
+    "ex" :
   {
     "@context": [context, { "post": "as1:post" }],
     "@type": "as:Activity",
@@ -67,7 +75,9 @@ var examples = [
       "displayName": "This is a blog post",
       "url": "http://example.org/posts/1"
     }
-  },
+  }},
+  { "cap": "Object using the Link class", 
+    "ex" :
   {
     "@context": [context, { "post": "as1:post" }],
     "@type": "as:Activity",
@@ -82,7 +92,9 @@ var examples = [
       "@type": "as:Link",
       "displayName": "This is a blog post"
     }
-  },
+  }},
+  { "cap": "Using multiple @type classes", 
+    "ex" :
   {
     "@context": [context, { "post": "as1:post" }],
     "@type": "as:Activity",
@@ -97,7 +109,9 @@ var examples = [
       "@type": ["as:Link", "urn:types:BlogPost"],
       "displayName": "This is a blog post"
     }
-  },
+  }},
+  { "cap": "Using multiple vocabularies (VCard)", 
+    "ex" :
   {
     "@context": context,
     "@type": "vcard:Individual",
@@ -119,7 +133,9 @@ var examples = [
     "published": "2014-10-25T12:34:56Z",
     "updated": "2014-10-25T12:34:56Z",
 
-  },
+  }},
+  { "cap": "A Simple Collection", 
+    "ex" :
   {
     "@context": context,
     "@type": "as:Collection",
@@ -135,7 +151,9 @@ var examples = [
         object: "acct:badguy@example.org"
       }
     ]
-  },
+  }},
+  { "cap": "Geolocation using W3C Geo Basic", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Place",
@@ -145,7 +163,9 @@ var examples = [
       "geo:long": "73.98"
     },
     "displayName": "Empire State Building"
-  },
+  }},
+  { "cap": "Geolocation using GeoSparql", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Place",
@@ -154,14 +174,18 @@ var examples = [
       "@value": "Point(40.75 73.98)"
     },
     "displayName": "Empire State Building"
-  },
+  }},
+  { "cap": "Simple Offer Example (using validity dates)", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Offer",
     "displayName": "An Offer",
     "validFrom": "2014-10-20T12:00:00Z",
     "validUntil": "2014-10-25T12:34:56Z"
-  },
+  }},
+  { "cap": "Tags and Attachments", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Note",
@@ -174,25 +198,33 @@ var examples = [
       "data:text/plain;base64,SGVsbG8sIFdvcmxkIQ%3D%3D"
     ],
     "tag": "acct:sally@example.org"
-  },
+  }},
+  { "cap": "A simple Link", 
+    "ex" :
   {
     "@context": context,
     "@type": "as:Link",
     "@id": "http://example.org/foo.html",
     "mediaType": "text/html",
     "rel": "alternate"
-  },
+  }},
+  { "cap": "Establishing default language context (the AS2 way)", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Thing",
     "language": "en",
     "displayName": "This is a thing"
-  },
+  }},
+  { "cap": "Establishing default language context (the JSON-LD way)", 
+    "ex" :
   {
     "@context": [context, {"@language":"en"}],
     "@type": "http://example.org/Thing",
     "displayName": "This is a thing"
-  },
+  }},
+  { "cap": "Using a Language Map", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Thing",
@@ -201,7 +233,9 @@ var examples = [
       "en": "This is a thing",
       "fr": "C'est une chose"
     }
-  },
+  }},
+  { "cap": "A JSON-LD Language-Map alternative (has the same effect)", 
+    "ex" :
   {
     "@context": [context, {
       "displayName_en": {
@@ -216,7 +250,9 @@ var examples = [
     "@type": "http://example.org/Thing",
     "displayName_en": "This is a thing",
     "displayName_fr": "C'est une chose"
-  },
+  }},
+  { "cap": "A Simple Action using HttpRequest", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Thing",
@@ -230,7 +266,9 @@ var examples = [
         "url": "http://example.org/target-url"
       }
     }
-  },
+  }},
+  { "cap": "A simple Action using BrowserView", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Thing",
@@ -245,7 +283,9 @@ var examples = [
         "url": "http://example.org/target-url"
       }
     }
-  },
+  }},
+  { "cap": "A Simple Action using EmbeddedView", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Thing",
@@ -259,7 +299,9 @@ var examples = [
         "content": "<div>Some embedded HTML</div>"
       }
     }
-  },
+  }},
+  { "cap": "Using multiple Potential Action Handlers", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Thing",
@@ -296,7 +338,9 @@ var examples = [
         }
       ]
     }
-  },
+  }},
+  { "cap": "Multiple Actions on an Object", 
+    "ex" :
   {
     "@context": context,
     "@type": "http://example.org/Thing",
@@ -321,5 +365,6 @@ var examples = [
         }
       }
     ]
+  }
   }
 ];
