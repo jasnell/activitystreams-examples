@@ -1,0 +1,8 @@
+---
+applications:
+- name: tpac
+  mem: 128M
+  instances: 1
+  path: .
+  host: tpac
+  command: node app.js
